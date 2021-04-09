@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{701802C3-23BE-4D44-B6E2-BCE8D58B219E}</ProjectGuid>
+    <RootNamespace>OpenOpcUaVpiLibrary</RootNamespace>
+    <SccProjectName>Svn</SccProjectName>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccProvider>SubversionScc</SccProvider>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)d</TargetName>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.\include;..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_VPI_BUILD_DLL;OPENOPCUAVPILIBRARY_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <EnablePREfast>false</EnablePREfast>
+      <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;rpcrt4.lib</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName)d.dll</OutputFile>
+      <ModuleDefinitionFile>OpenOpcUaVpiLibraryd.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Message>copy library to target to the top level library destination</Message>
+      <Command>copy "$(OutDir)$(TargetName).lib" ..\..\lib\win32\vs2013
+copy "$(OutDir)$(TargetName).dll" ..\..\bin\win32\vs2013
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>.\include;..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;OPENOPCUAVPILIBRARY_EXPORTS;_VPI_BUILD_DLL;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalOptions> /Qvec-report:2</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;rpcrt4.lib</AdditionalDependencies>
+      <ModuleDefinitionFile>OpenOpcUaVpiLibrary.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Message>copy library to target to the top level library destination</Message>
+      <Command>copy "$(OutDir)$(TargetName).lib" ..\..\lib\win32\vs2013
+copy "$(OutDir)$(TargetName).dll" ..\..\bin\win32\vs2013</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="source\dllmain.cpp" />
+    <ClCompile Include="source\OpenOpcUaVpiLibrary.cpp" />
+    <ClCompile Include="source\RtSocket.cpp" />
+    <ClCompile Include="source\SerialPort.cpp" />
+    <ClCompile Include="source\stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\VpiByteString.cpp" />
+    <ClCompile Include="source\VpiDataValue.cpp" />
+    <ClCompile Include="source\VpiDatetime.cpp" />
+    <ClCompile Include="source\VpiExpandedNodeId.cpp" />
+    <ClCompile Include="source\VpiGuid.cpp" />
+    <ClCompile Include="source\VpiInternalThread.cpp" />
+    <ClCompile Include="source\VpiLocalizedText.cpp" />
+    <ClCompile Include="source\VpiMemory.cpp" />
+    <ClCompile Include="source\VpiMutex.cpp" />
+    <ClCompile Include="source\VpiNodeId.cpp" />
+    <ClCompile Include="source\VpiQualifiedName.cpp" />
+    <ClCompile Include="source\VpiSemaphore.cpp" />
+    <ClCompile Include="source\VpiSocket.cpp" />
+    <ClCompile Include="source\VpiString.cpp" />
+    <ClCompile Include="source\VpiThread.cpp" />
+    <ClCompile Include="source\VpiTrace.cpp" />
+    <ClCompile Include="source\VpiVariant.cpp" />
+    <ClCompile Include="source\VpiXmlElement.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\RtSocket.h" />
+    <ClInclude Include="include\SerialPort.h" />
+    <ClInclude Include="include\stdafx.h" />
+    <ClInclude Include="include\targetver.h" />
+    <ClInclude Include="include\VpiByteString.h" />
+    <ClInclude Include="include\VpiConfig.h" />
+    <ClInclude Include="include\VpiDataValue.h" />
+    <ClInclude Include="include\VpiDatetime.h" />
+    <ClInclude Include="include\VpiExpandedNodeId.h" />
+    <ClInclude Include="include\VpiGuid.h" />
+    <ClInclude Include="include\VpiInternal.h" />
+    <ClInclude Include="include\VpiInternalSocket.h" />
+    <ClInclude Include="include\VpiInternalThread.h" />
+    <ClInclude Include="include\VpiLocalizedText.h" />
+    <ClInclude Include="include\VpiMacroDef.h" />
+    <ClInclude Include="include\VpiMemory.h" />
+    <ClInclude Include="include\VpiMutex.h" />
+    <ClInclude Include="include\VpiNodeId.h" />
+    <ClInclude Include="include\VpiOs.h" />
+    <ClInclude Include="include\VpiPlatformdefs.h" />
+    <ClInclude Include="include\VpiProxyStub.h" />
+    <ClInclude Include="include\VpiQualifiedName.h" />
+    <ClInclude Include="include\VpiSemaphore.h" />
+    <ClInclude Include="include\VpiSocket.h" />
+    <ClInclude Include="include\VpiString.h" />
+    <ClInclude Include="include\VpiThread.h" />
+    <ClInclude Include="include\VpiTrace.h" />
+    <ClInclude Include="include\VpiTypes.h" />
+    <ClInclude Include="include\VpiVariant.h" />
+    <ClInclude Include="include\VpiXmlElement.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="CMakeLists.txt">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OpenOpcUaVpiLibrary.def" />
+    <None Include="OpenOpcUaVpiLibraryd.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="OpenOpcUaVpiLibrary.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

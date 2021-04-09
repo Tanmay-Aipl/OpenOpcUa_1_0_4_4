@@ -1,0 +1,105 @@
+// VPIOperatingSystem.cpp : définit les fonctions exportées pour l'application DLL.
+//
+
+#include <stdafx.h>
+
+using namespace std;
+using namespace UASubSystem;
+CVPINullEx::CVPINullEx()
+{
+	m_hVPINullExThread = OpcUa_Null;
+	OpcUa_Vpi_Mutex_Create(&m_OpcUaSourceObjectMutex);
+	m_bRunVPINullExThread = OpcUa_False;
+	OpcUa_Vpi_Semaphore_Create(&m_hVPINullExThread, 0, 0x100);
+	StartVPINullExThread();
+}
+CVPINullEx::~CVPINullEx()
+{
+	StopVPINullExThread();
+	if (m_hVPINullExThread)
+		OpcUa_Vpi_Semaphore_Delete(&m_hVPINullExThread);
+	OpcUa_Vpi_Mutex_Delete(&m_OpcUaSourceObjectMutex);
+
+}
+
+void CVPINullEx::VPINullExThread(LPVOID arg)
+{
+	CVPINullEx* pVPIVPINullEx = (CVPINullEx *)arg;
+	DWORD dwSleepTime;
+	// Will wait until the cold start is finished
+	OpcUa_Vpi_Semaphore_TimedWait(pVPIVPINullEx->m_hStopVPINullExThreadSem, INFINITE);
+	while (pVPIVPINullEx->m_bRunVPINullExThread)
+	{
+		DWORD dwStart = GetTickCount();
+		DWORD dwPollingMin = 5000;
+		PFUNCNOTIFYCALLBACK pFuncNotifyCallback = (PFUNCNOTIFYCALLBACK)pVPIVPINullEx->GetNotifyCallback();
+		// Do something
+		{
+			OpcUa_String szAddress;
+			OpcUa_Vpi_String_Initialize(&szAddress);
+			// Remplir szAddress avec une adresse provenant de VPINullEx
+			OpcUa_Vpi_Mutex_Lock(pVPIVPINullEx->m_OpcUaSourceObjectMutex);
+			CSourceObject* pSourceSource = pVPIVPINullEx->GetSourceObject(szAddress);
+			OpcUa_NodeId aNodeId; // TODO
+			aNodeId.IdentifierType = OpcUa_IdentifierType_String;
+			aNodeId.NamespaceIndex=3;
+
+			OpcUa_UInt32 uiSizeToSend = 1;
+			OpcUa_DataValue* pValue = (OpcUa_DataValue*)malloc(sizeof(OpcUa_DataValue)*uiSizeToSend);
+			pValue[0].Value.ArrayType = OpcUa_VariantArrayType_Scalar;
+			pValue[0].StatusCode = OpcUa_Vpi_Good;
+			pValue[0].SourceTimestamp = OpcUa_Vpi_DateTime_UtcNow();
+			pValue[0].Value.Datatype = OpcUaType_String;
+			OpcUa_Vpi_String_AttachCopy(&(pValue[0].Value.Value.String), "Hello World");
+			// Do someting in the protected section
+
+			OpcUa_Vpi_Mutex_Unlock(pVPIVPINullEx->m_OpcUaSourceObjectMutex);
+			// NotifyServer
+			// transmission a la cache du serveur UA
+			pFuncNotifyCallback(uiSizeToSend, &aNodeId, pValue);
+		} 
+		// calcul du temps de traitement
+		DWORD dwEnd = GetTickCount();
+		DWORD dwCountedTime = dwEnd - dwStart;
+		if (dwPollingMin>dwCountedTime)
+			dwSleepTime = dwPollingMin - dwCountedTime;
+		else
+			dwSleepTime = 0;
+		// Tempo
+		OpcUa_Vpi_Semaphore_TimedWait(pVPIVPINullEx->m_hStopVPINullExThreadSem, dwSleepTime);
+	} // fin while (pVPIMdbMaster->m_bRunPLCLevelThread)
+	printf("VPINullExThread was termined\n");
+	OpcUa_Vpi_Semaphore_Post(pVPIVPINullEx->m_hStopVPINullExThreadSem, 1);
+}
+
+void CVPINullEx::StartVPINullExThread()
+{
+	if (m_hVPINullExThread == OpcUa_Null)
+	{
+		m_bRunVPINullExThread = OpcUa_True;
+		if (OpcUa_Vpi_Thread_Create(&m_hVPINullExThread, VPINullExThread, this) == OpcUa_Vpi_Good)
+			OpcUa_Vpi_Thread_Start(m_hVPINullExThread);
+		else
+		{
+			printf("Create VPINullExThread Failed\n");
+			return;
+		}
+	}
+}
+
+OpcUa_Vpi_StatusCode CVPINullEx::StopVPINullExThread()
+{
+	OpcUa_Vpi_StatusCode uStatus = OpcUa_Vpi_Good;
+	if (!m_bRunVPINullExThread)
+		return uStatus;
+	m_bRunVPINullExThread = FALSE;
+	OpcUa_Vpi_Semaphore_Post(m_hStopVPINullExThreadSem, 1);
+	OpcUa_StatusCode dwTimeoutReason = OpcUa_Vpi_Semaphore_TimedWait(m_hStopVPINullExThreadSem, OPC_TIMEOUT * 2); // 10 secondes max.
+	if (dwTimeoutReason == WAIT_TIMEOUT)
+	{
+		// on force la fin du thread de simulation
+		printf("Impossible to stop the VPINullExThread. Timeout\n");
+		uStatus = OpcUa_Vpi_BadInternalError;
+	}
+	return uStatus;
+}

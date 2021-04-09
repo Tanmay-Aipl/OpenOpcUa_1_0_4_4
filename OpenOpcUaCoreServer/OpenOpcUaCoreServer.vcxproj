@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{CBA5AF3C-C46D-4CA6-B18A-DA5277E10982}</ProjectGuid>
+    <RootNamespace>Server</RootNamespace>
+    <SccProjectName>Svn</SccProjectName>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccProvider>SubversionScc</SccProvider>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <TargetName>$(ProjectName)_Debug</TargetName>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <TargetName>$(ProjectName)_Release</TargetName>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/GR %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.\;.\include;..\include\OpenOpcUaSharedLib;..\include\opcua;..\include\SaxXml;..\include\lua;.\ServerShared</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_UA_STACK_USE_DLL;_CRT_SECURE_NO_WARNINGS;</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CallingConvention>Cdecl</CallingConvention>
+      <EnablePREfast>false</EnablePREfast>
+    </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>.\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>OpenOpcUaSharedLibd.lib;OpenOpcUaStackV1d.lib;libeay32.lib;crypt32.lib;ws2_32.lib;XMLSAXParserd.lib;version.lib;LuaLibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName)_$(Configuration).exe</OutputFile>
+      <AdditionalLibraryDirectories>..\lib\win32;..\lib\win32\vs2013;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalOptions>/fixed:no %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy "$(SolutionDir)$(Configuration)\$(TargetFileName)" ..\bin\win32\vs2013</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Create the destination folder for binaries</Message>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>.\;.\include;..\include\OpenOpcUaSharedLib;..\include\opcua;..\include\SaxXml;..\include\lua;.\ServerShared</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_UA_STACK_USE_DLL;_CRT_SECURE_NO_WARNINGS;</PreprocessorDefinitions>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalOptions> /Qvec-report:1</AdditionalOptions>
+      <EnablePREfast>false</EnablePREfast>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+    </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>.\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>OpenOpcUaSharedLib.lib;OpenOpcUaStackV1.lib;libeay32.lib;crypt32.lib;ws2_32.lib;XMLSAXParser.lib;version.lib;LuaLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName)_$(Configuration).exe</OutputFile>
+      <AdditionalLibraryDirectories>..\lib\win32;..\lib\win32\vs2013;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy "$(SolutionDir)$(Configuration)\$(TargetFileName)" ..\bin\win32\vs2013</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+      <Message>Create the destination folder for binaries</Message>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="source\Alias.cpp" />
+    <ClCompile Include="source\ContinuationPoint.cpp" />
+    <ClCompile Include="source\Definition.cpp" />
+    <ClCompile Include="source\EventDefinition.cpp" />
+    <ClCompile Include="source\EventsEngine.cpp" />
+    <ClCompile Include="source\Field.cpp" />
+    <ClCompile Include="source\HaEngine.cpp" />
+    <ClCompile Include="source\LuaDebugger.cpp" />
+    <ClCompile Include="source\LuaRestoreStack.cpp" />
+    <ClCompile Include="source\LuaScript.cpp" />
+    <ClCompile Include="source\LuaThis.cpp" />
+    <ClCompile Include="source\LuaVirtualMachine.cpp" />
+    <ClCompile Include="source\Main.cpp" />
+    <ClCompile Include="source\MonitoredItemServer.cpp" />
+    <ClCompile Include="source\MurmurHash3.cpp" />
+    <ClCompile Include="source\NamespaceUri.cpp" />
+    <ClCompile Include="source\OpenOpcUaScript.cpp" />
+    <ClCompile Include="source\QueuedCallRequest.cpp" />
+    <ClCompile Include="source\QueuedHistoryReadRequest.cpp" />
+    <ClCompile Include="source\QueuedPublishRequest.cpp" />
+    <ClCompile Include="source\QueuedQueryFirstRequest.cpp" />
+    <ClCompile Include="source\QueuedQueryNextRequest.cpp" />
+    <ClCompile Include="source\QueuedReadRequest.cpp" />
+    <ClCompile Include="source\QueueRequest.cpp" />
+    <ClCompile Include="source\SecureChannel.cpp" />
+    <ClCompile Include="source\ServerApplication.cpp" />
+    <ClCompile Include="source\ServiceModule.cpp" />
+    <ClCompile Include="source\SessionServer.cpp" />
+    <ClCompile Include="source\SimulatedGroup.cpp" />
+    <ClCompile Include="source\SimulatedNode.cpp" />
+    <ClCompile Include="source\StackCallbacks.cpp" />
+    <ClCompile Include="source\StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\SubscriptionServer.cpp" />
+    <ClCompile Include="source\UABase.cpp" />
+    <ClCompile Include="source\UABinding.cpp" />
+    <ClCompile Include="source\UADataChangeNotification.cpp" />
+    <ClCompile Include="source\UADataType.cpp" />
+    <ClCompile Include="source\UAEventNotificationList.cpp" />
+    <ClCompile Include="source\UAHistorianVariable.cpp" />
+    <ClCompile Include="source\UAInformationModel.cpp" />
+    <ClCompile Include="source\UAMethod.cpp" />
+    <ClCompile Include="source\UAMonitoredItemNotification.cpp" />
+    <ClCompile Include="source\UAObject.cpp" />
+    <ClCompile Include="source\UAObjectType.cpp" />
+    <ClCompile Include="source\UAReference.cpp" />
+    <ClCompile Include="source\UAReferenceType.cpp" />
+    <ClCompile Include="source\UAStatusChangeNotification.cpp" />
+    <ClCompile Include="source\UAVariable.cpp" />
+    <ClCompile Include="source\UAVariableType.cpp" />
+    <ClCompile Include="source\UAView.cpp" />
+    <ClCompile Include="source\VpiDataValue.cpp" />
+    <ClCompile Include="source\VpiDevice.cpp" />
+    <ClCompile Include="source\VpiFuncCaller.cpp" />
+    <ClCompile Include="source\VPIScheduler.cpp" />
+    <ClCompile Include="source\VpiTag.cpp" />
+    <ClCompile Include="source\VpiWriteObject.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Alias.h" />
+    <ClInclude Include="include\ContinuationPoint.h" />
+    <ClInclude Include="include\Definition.h" />
+    <ClInclude Include="include\EventDefinition.h" />
+    <ClInclude Include="include\EventsEngine.h" />
+    <ClInclude Include="include\Field.h" />
+    <ClInclude Include="include\HaEngine.h" />
+    <ClInclude Include="include\LuaDebugger.h" />
+    <ClInclude Include="include\LuaRestoreStack.h" />
+    <ClInclude Include="include\LuaScript.h" />
+    <ClInclude Include="include\LuaThis.h" />
+    <ClInclude Include="include\LuaVirtualMachine.h" />
+    <ClInclude Include="include\MonitoredItemServer.h" />
+    <ClInclude Include="include\MurmurHash3.h" />
+    <ClInclude Include="include\NamespaceUri.h" />
+    <ClInclude Include="include\OpenOpcUaScript.h" />
+    <ClInclude Include="include\QueuedCallRequest.h" />
+    <ClInclude Include="include\QueuedHistoryReadRequest.h" />
+    <ClInclude Include="include\QueuedPublishRequest.h" />
+    <ClInclude Include="include\QueuedQueryFirstRequest.h" />
+    <ClInclude Include="include\QueuedQueryNextRequest.h" />
+    <ClInclude Include="include\QueuedReadRequest.h" />
+    <ClInclude Include="include\QueueRequest.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="include\SecureChannel.h" />
+    <ClInclude Include="include\ServerApplication.h" />
+    <ClInclude Include="include\SessionServer.h" />
+    <ClInclude Include="include\SimulatedGroup.h" />
+    <ClInclude Include="include\SimulatedNode.h" />
+    <ClInclude Include="include\StackCallbacks.h" />
+    <ClInclude Include="include\stdafx.h" />
+    <ClInclude Include="include\SubscriptionServer.h" />
+    <ClInclude Include="include\targetver.h" />
+    <ClInclude Include="include\UABase.h" />
+    <ClInclude Include="include\UABinding.h" />
+    <ClInclude Include="include\UADataChangeNotification.h" />
+    <ClInclude Include="include\UADataType.h" />
+    <ClInclude Include="include\UAEventNotificationList.h" />
+    <ClInclude Include="include\UAHistorianVariable.h" />
+    <ClInclude Include="include\UAInformationModel.h" />
+    <ClInclude Include="include\UAMethod.h" />
+    <ClInclude Include="include\UAMonitoredItemNotification.h" />
+    <ClInclude Include="include\UAObject.h" />
+    <ClInclude Include="include\UAObjectType.h" />
+    <ClInclude Include="include\UAReference.h" />
+    <ClInclude Include="include\UAReferenceType.h" />
+    <ClInclude Include="include\UAStatusChangeNotification.h" />
+    <ClInclude Include="include\UAVariable.h" />
+    <ClInclude Include="include\UAVariableType.h" />
+    <ClInclude Include="include\UAView.h" />
+    <ClInclude Include="ServerShared\VfiDataValue.h" />
+    <ClInclude Include="ServerShared\VpiDataValue.h" />
+    <ClInclude Include="include\VpiFuncCaller.h" />
+    <ClInclude Include="include\VPIScheduler.h" />
+    <ClInclude Include="include\VpiWriteObject.h" />
+    <ClInclude Include="ServerShared\XMLSAXParserTlk.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="OpenOpcUaCoreServer.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="CMakeLists.txt">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

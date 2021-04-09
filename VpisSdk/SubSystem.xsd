@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://tempuri.org/XMLSchema.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/XMLSchema.xsd"
+    xmlns:mstns="http://tempuri.org/XMLSchema.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:ua="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd">
+  <xs:import namespace="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd" schemaLocation="UANodeSet.xsd"></xs:import>
+  <xs:element name="SubSystems" type="SubSystems"></xs:element>
+  <xs:complexType name="SubSystems">
+    <xs:sequence>
+      <xs:element name="SubSystem" type="SubSystem" minOccurs="1" maxOccurs="unbounded"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- définiton des sous-systèmes -->
+  <xs:complexType name="SubSystem">
+    <xs:sequence>
+      <xs:element name="Tag" type="Tag" minOccurs="1" maxOccurs="unbounded"></xs:element>
+    </xs:sequence>
+    <xs:attribute name="SubSystemName" type="xs:string" use="required"></xs:attribute>
+    <xs:attribute name="SubSystemId" type="ua:NodeId" use="required"></xs:attribute>
+    <xs:attribute name ="VpiName" type="xs:string" use="required"></xs:attribute>
+    <xs:attribute name="AccessMode" use="optional">
+      <!-- Cette attribut permet d'indiquer le mode de fonctionnement du VPI : Polling, Subscription ou les deux -->
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Poll"></xs:enumeration>
+          <xs:enumeration value="Subscribe"></xs:enumeration>
+          <xs:enumeration value="Both"></xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+  <!-- définition des tags -->
+  <xs:complexType name="Tag">
+    <xs:attribute name="Id" type="ua:NodeId"></xs:attribute>
+    <xs:attribute name="Name" type="xs:string"></xs:attribute>
+    <xs:attribute name="Description" type="xs:string"></xs:attribute>
+    <xs:attribute name="Type">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Boolean"></xs:enumeration>
+          <xs:enumeration value="SByte"></xs:enumeration>
+          <xs:enumeration value="Byte"></xs:enumeration>
+          <xs:enumeration value="Int16"></xs:enumeration>
+          <xs:enumeration value="UInt16"></xs:enumeration>
+          <xs:enumeration value="Int32"></xs:enumeration>
+          <xs:enumeration value="UInt32"></xs:enumeration>
+          <xs:enumeration value="Int64"></xs:enumeration>
+          <xs:enumeration value="UInt64"></xs:enumeration>
+          <xs:enumeration value="Float"></xs:enumeration>
+          <xs:enumeration value="Double"></xs:enumeration>
+          <xs:enumeration value="DateTime"></xs:enumeration>
+          <xs:enumeration value="String"></xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="Dimension" type="xs:unsignedInt"></xs:attribute>
+    <xs:attribute name="NbElement" type="xs:unsignedInt"></xs:attribute>
+    <xs:attribute name="AccessRight" default="Input_Output">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Input"></xs:enumeration>
+          <xs:enumeration value="Output"></xs:enumeration>
+          <xs:enumeration value="Input_Output"></xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="Address" type="xs:string"></xs:attribute>
+  </xs:complexType>
+</xs:schema>

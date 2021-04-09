@@ -1,0 +1,12 @@
+LIBRARY	"VfiXxx"
+
+EXPORTS
+VfiGlobalStart @2
+VfiColdStart @3
+VfiWarmStart @4
+VfiHistoryRead @5
+VfiHistoryWrite @6
+VfiHistoryUpdateValue @7
+VfiParseAddId @8
+VfiParseRemoveId @9
+VfiSetNotifyCallback @10

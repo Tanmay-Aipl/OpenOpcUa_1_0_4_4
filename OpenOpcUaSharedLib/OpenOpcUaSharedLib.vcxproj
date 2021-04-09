@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>OpenOpcUaSharedLib</ProjectName>
+    <ProjectGuid>{E327C82B-9EAE-456D-8C85-9A7A83025182}</ProjectGuid>
+    <RootNamespace>Shared</RootNamespace>
+    <SccProjectName>Svn</SccProjectName>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccProvider>SubversionScc</SccProvider>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)d</TargetName>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\include\opcua;..\include;.\include;</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_UA_STACK_USE_DLL;_CRT_SECURE_NO_WARNINGS;</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CallingConvention>Cdecl</CallingConvention>
+      <ShowIncludes>false</ShowIncludes>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(ProjectName)d.lib</OutputFile>
+      <TargetMachine>MachineX86</TargetMachine>
+      <SubSystem>Windows</SubSystem>
+    </Lib>
+    <PostBuildEvent>
+      <Message>Copie de la bibliothèque</Message>
+      <Command>copy "$(OutDir)$(TargetName).lib" ..\lib\win32\vs2013
+copy "$(OutDir)$(TargetName).dll" ..\bin\win32\vs2013
+</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+      <Message>Create destination folder for libraries</Message>
+    </PreBuildEvent>
+    <Link>
+      <AdditionalDependencies>OpenOpcUaStackV1d.lib;libeay32.lib;crypt32.lib;ws2_32.lib;version.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\lib\win32;..\lib\win32\vs2013</AdditionalLibraryDirectories>
+      <OutputFile>$(OutDir)$(ProjectName)d.dll</OutputFile>
+      <ModuleDefinitionFile>.\source\OpenOpcUaSharedLibd.def</ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>..\include\opcua;..\include;.\include;</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_UA_STACK_USE_DLL;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalOptions> /Qvec-report:2</AdditionalOptions>
+      <EnablePREfast>true</EnablePREfast>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(ProjectName).lib</OutputFile>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Lib>
+    <PostBuildEvent>
+      <Command>copy "$(OutDir)$(TargetName).lib" ..\lib\win32\vs2013
+copy "$(OutDir)$(TargetName).dll" ..\bin\win32\vs2013</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Create destination folder for libraries</Message>
+    </PreBuildEvent>
+    <Link>
+      <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
+      <AdditionalLibraryDirectories>..\lib\win32;..\lib\win32\vs2013</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile>.\source\OpenOpcUaSharedLib.def</ModuleDefinitionFile>
+      <AdditionalDependencies>OpenOpcUaStackV1.lib;libeay32.lib;crypt32.lib;ws2_32.lib;version.lib</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="source\Application.cpp" />
+    <ClCompile Include="source\BuildInfo.cpp" />
+    <ClCompile Include="source\Channel.cpp" />
+    <ClCompile Include="source\CryptoUtils.cpp" />
+    <ClCompile Include="source\DataValue.cpp" />
+    <ClCompile Include="source\EndpointDescription.cpp" />
+    <ClCompile Include="source\ExtensionObject.cpp" />
+    <ClCompile Include="source\FileVersionInfo.cpp" />
+    <ClCompile Include="source\MonitoredItemBase.cpp" />
+    <ClCompile Include="source\NumericRange.cpp" />
+    <ClCompile Include="source\opcua_certficates.cpp" />
+    <ClCompile Include="source\OpenOpcUa.cpp" />
+    <ClCompile Include="source\ServerStatus.cpp" />
+    <ClCompile Include="source\SessionBase.cpp" />
+    <ClCompile Include="source\SessionDiagnosticsDataType.cpp" />
+    <ClCompile Include="source\SessionSecurityDiagnosticsDataType.cpp" />
+    <ClCompile Include="source\stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Subscription.cpp" />
+    <ClCompile Include="source\SubscriptionDiagnosticsDataType.cpp" />
+    <ClCompile Include="source\UserTokenPolicy.cpp" />
+    <ClCompile Include="source\Utils.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Application.h" />
+    <ClInclude Include="include\BuildInfo.h" />
+    <ClInclude Include="include\Channel.h" />
+    <ClInclude Include="include\CryptoUtils.h" />
+    <ClInclude Include="include\cslock.h" />
+    <ClInclude Include="include\DataValue.h" />
+    <ClInclude Include="include\EndpointDescription.h" />
+    <ClInclude Include="include\ExtensionObject.h" />
+    <ClInclude Include="include\FileVersionInfo.h" />
+    <ClInclude Include="include\MonitoredItemBase.h" />
+    <ClInclude Include="include\NodeIdLookupTable.h" />
+    <ClInclude Include="include\NumericRange.h" />
+    <ClInclude Include="include\opcua_certificates.h" />
+    <ClInclude Include="include\OpenOpcUa.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="include\ServerStatus.h" />
+    <ClInclude Include="include\SessionBase.h" />
+    <ClInclude Include="include\SessionDiagnosticsDataType.h" />
+    <ClInclude Include="include\SessionSecurityDiagnosticsDataType.h" />
+    <ClInclude Include="include\StatusCodeException.h" />
+    <ClInclude Include="include\stdafx.h" />
+    <ClInclude Include="include\Subscription.h" />
+    <ClInclude Include="include\SubscriptionDiagnosticsDataType.h" />
+    <ClInclude Include="include\targetver.h" />
+    <ClInclude Include="include\UserTokenPolicy.h" />
+    <ClInclude Include="include\Utils.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="OpenOpcUaSharedLib.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Doc\Analyse de la SharedLib.docx" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="source\OpenOpcUaSharedLib.def" />
+    <None Include="source\OpenOpcUaSharedLibd.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="CMakeLists.txt">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,3 @@
+/home/murali/OpenOpcUa_1_0_4_4/OpenOpcUaStackV1/CMakeFiles/rebuild_cache.dir
+/home/murali/OpenOpcUa_1_0_4_4/OpenOpcUaStackV1/CMakeFiles/edit_cache.dir
+/home/murali/OpenOpcUa_1_0_4_4/OpenOpcUaStackV1/CMakeFiles/OpenOpcUaStack.dir

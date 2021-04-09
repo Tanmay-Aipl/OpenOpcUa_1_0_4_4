@@ -1,0 +1,239 @@
+#include <stdafx.h>
+ 
+using namespace UASubSystem;
+using namespace std;
+#include <vector>
+#include <string>
+CVpiInternalData* pVpiHandle=NULL; // handle du Vpi utilisé pour dialoguer avec le serveur
+vector<CVpiInternalData*> gVpiInternalData; // liste de l'ensemble des elements interne pris en charge par cette DLL(VPI). 
+											// Chaque appel à global start devra ajouter une instance dans ce vecteur
+/*============================================================================
+// Fonction non exportée utilisé. 
+// Elles sont utilisées en interne pour la réalisation du Vpi
+ *===========================================================================*/
+/*============================================================================
+ * The GetVpiHandle function returns a CVpiInternalData based on a OpcUa_Handle
+ *===========================================================================*/
+OpcUa_Vpi_StatusCode GetVpiHandle(OpcUa_Vpi_Handle* pHandle,CVpiInternalData** pOutInternalData)
+{
+	OpcUa_Vpi_StatusCode uStatus=OpcUa_Vpi_BadNotFound;
+
+	if (pHandle == NULL)
+	{
+		return uStatus;
+	}
+
+	for (unsigned short ii=0;ii<gVpiInternalData.size();ii++)
+	{
+		CVpiInternalData* pInternal=gVpiInternalData.at(ii); 
+		if (pInternal->GetVpiHandle()==pHandle)
+		{
+			*pOutInternalData=pInternal;
+			uStatus=OpcUa_Vpi_Good;
+			break;
+		}
+	}
+	return uStatus;
+}
+//typedef OpcUa_Vpi_StatusCode (__stdcall *PFUNCNOTIFYCALLBACK)(OpcUa_NodeId Id, CVpiDataValue* pValue);
+OpcUa_Vpi_StatusCode VpiSetNotifyCallback(OpcUa_Handle hVpi,PFUNCNOTIFYCALLBACK lpCallbackNotify)
+{
+	OpcUa_Vpi_StatusCode uStatus=OpcUa_Vpi_Good;
+	if (!hVpi)
+		uStatus=OpcUa_Vpi_Bad;
+	else
+	{
+		CVpiInternalData* pVpiInternal=(CVpiInternalData*)hVpi;
+	}
+	return uStatus;
+}
+OpcUa_Vpi_StatusCode VpiGlobalStop(OpcUa_Handle hVpi) 
+{
+	OpcUa_Vpi_StatusCode uStatus=OpcUa_Vpi_Good;
+	if (!hVpi)
+		uStatus=OpcUa_Vpi_Bad;
+	else
+	{
+	}
+	return uStatus;
+}
+
+DWORD    g_dwLastTick = 0;    // tick time of last input event
+OpcUa_Vpi_StatusCode VpiGlobalStart(OpcUa_String szSubSystemName, OpcUa_NodeId SubsystemId,OpcUa_Handle* hVpi) 
+{
+	OpcUa_Vpi_StatusCode uStatus;
+	CVpiInternalData* pInternal=NULL;
+	(void)SubsystemId;
+	(void)szSubSystemName;
+	uStatus=GetVpiHandle(hVpi,&pInternal);
+	if (uStatus==OpcUa_Vpi_BadNotFound)
+	{
+		CVpiInternalData* phVpiInternalData=NULL;
+		phVpiInternalData=new CVpiInternalData();
+		// SetVpiData to the internalData instance
+		phVpiInternalData->SetVpiHandle((OpcUa_Handle*)phVpiInternalData);
+		gVpiInternalData.push_back(phVpiInternalData);
+		*hVpi  = (OpcUa_Handle*) phVpiInternalData;
+		uStatus=OpcUa_Vpi_Good;
+	}
+	else
+		uStatus=OpcUa_Vpi_Bad;
+	return uStatus;
+}
+
+OpcUa_Vpi_StatusCode VpiColdStart(OpcUa_Handle hVpi) 
+{
+	OpcUa_Vpi_StatusCode uStatus=OpcUa_Vpi_Good;
+	if (!hVpi)
+		uStatus=OpcUa_Vpi_Bad;
+	else
+	{
+		CVpiInternalData* pVpi=(CVpiInternalData*)hVpi;
+		if (pVpi)
+		{
+			// Initialiser le lien avec Mivisu
+			CVPINullEx* pVPINullEx = pVpi->GetVPINullEx();
+			if (pVPINullEx)
+			{
+				OpcUa_Vpi_Semaphore_Post(pVPINullEx->GetStopVPINullExThreadSem(), 1);
+			}
+		}
+	}
+	return uStatus;
+}
+
+OpcUa_Vpi_StatusCode VpiWarmStart(OpcUa_Handle hVpi) 
+{
+	OpcUa_Vpi_StatusCode uStatus=OpcUa_Vpi_Good;
+	if (!hVpi)
+		uStatus=OpcUa_Vpi_Bad;
+	else
+	{
+		CVpiInternalData* pVpi=(CVpiInternalData*)hVpi;
+		(void)pVpi;
+		// Re-Initialiser le lien avec Mivisu
+	}
+	return uStatus;
+}
+
+OpcUa_Vpi_StatusCode VpiReadValue(OpcUa_Vpi_Handle hVpi, OpcUa_UInt32 uiNbOfValueRead, OpcUa_NodeId* Ids, OpcUa_DataValue** pValue)
+{	
+	OpcUa_Vpi_StatusCode uStatus = OpcUa_Vpi_Good;
+	if (!hVpi)
+		uStatus = OpcUa_Vpi_Bad;
+	else
+	{
+		if (uiNbOfValueRead > 0)
+		{
+			for (OpcUa_Int32 i = 0; i < uiNbOfValueRead; i++)
+			{
+				CVpiInternalData* pVpi = (CVpiInternalData*)hVpi;
+				CSourceObject* pObject = pVpi->GetSourceObject(Ids[i]);
+				if (pObject)
+				{
+					CVpiDataValue* apValue = pObject->GetValue();
+					apValue->SetStatusCode(OpcUa_Vpi_UncertainInitialValue);
+				}
+				else
+					uStatus = OpcUa_Vpi_BadNotFound;
+			}
+		}
+	}
+	return uStatus;
+}
+
+OpcUa_Vpi_StatusCode VpiWriteValue(OpcUa_Vpi_Handle hVpi, 
+								   OpcUa_UInt32 UiNbOfValueWrite, 
+								   OpcUa_NodeId* Ids, 
+								   OpcUa_DataValue** ppValue)
+{
+	OpcUa_Vpi_StatusCode uStatus=OpcUa_Vpi_Good;
+	(void)Ids;
+	if (!hVpi)
+		uStatus=OpcUa_Vpi_Bad;
+	else
+	{
+		CVpiInternalData* pVpi=(CVpiInternalData*)hVpi;
+		(void)pVpi;
+	}
+	return uStatus;
+}
+
+OpcUa_Vpi_StatusCode VpiParseAddId(OpcUa_Handle hVpi,OpcUa_NodeId Id, OpcUa_Byte Datatype, OpcUa_UInt32 iNbElt,OpcUa_Byte AccessRight, OpcUa_String ParsedAddress )
+{
+	OpcUa_Vpi_StatusCode uStatus=OpcUa_Vpi_Good;
+	(void)AccessRight;
+	if (!hVpi)
+		uStatus=OpcUa_Vpi_Bad;
+	else
+	{
+
+	}
+	return uStatus;
+}
+
+OpcUa_Vpi_StatusCode VpiParseRemoveId(OpcUa_Handle hVpi,OpcUa_NodeId Id) 
+{
+	OpcUa_Vpi_StatusCode uStatus=OpcUa_Vpi_Good;
+	(void)Id;
+	if (!hVpi)
+		uStatus=OpcUa_Vpi_Bad;
+	else
+	{
+		CVpiInternalData* pVpi=(CVpiInternalData*)hVpi;
+		(void)pVpi;
+	}
+	return uStatus;
+}
+
+//============================================================================
+// Utils::IsEqual ( pour les OpcUa_NodeId
+//============================================================================
+OpcUa_Boolean IsEqual(const OpcUa_NodeId* pOne, const OpcUa_NodeId* pTwo)
+{
+	if (pOne == pTwo)
+	{
+		return true;
+	}
+
+	if (pOne->IdentifierType != pTwo->IdentifierType)
+	{
+		return false;
+	}
+	
+	if (pOne->NamespaceIndex != pTwo->NamespaceIndex)
+	{
+		return false;
+	}
+
+	// check the numeric value.
+	if (pOne->IdentifierType == OpcUa_IdentifierType_Numeric)
+	{
+		return pOne->Identifier.Numeric == pTwo->Identifier.Numeric;
+	}
+
+	// check the string value.
+	if (pOne->IdentifierType == OpcUa_IdentifierType_String)
+	{
+		return  strcmp(pOne->Identifier.String.strContent,pTwo->Identifier.String.strContent)==0;//OpcUa_String_StrnCmp((OpcUa_String*)&pOne->Identifier.String, (OpcUa_String*)&pTwo->Identifier.String, OPCUA_STRING_LENDONTCARE, OpcUa_False) == 0;
+	}
+
+	// check the guid value.
+	if (pOne->IdentifierType == OpcUa_IdentifierType_Guid)
+	{
+		return memcmp(pOne->Identifier.Guid, pTwo->Identifier.Guid, sizeof(OpcUa_Guid)) == 0;
+	}
+
+	// check the opaque value.
+	if (pOne->IdentifierType == OpcUa_IdentifierType_Opaque)
+	{
+		if (pOne->Identifier.ByteString.Length != pTwo->Identifier.ByteString.Length)
+		{
+			return false;
+		}
+
+		return memcmp(pOne->Identifier.ByteString.Data, pTwo->Identifier.ByteString.Data, pOne->Identifier.ByteString.Length) == 0;
+	}
+		
+	return false;
+}

@@ -1,0 +1,70 @@
+/************************************
+VpiInternal.cpp
+VpiInternallHelpers initial implemantation of Helper fonction in VPis
+No exported.
+Revision By: Michel Condemine
+Revised on 22/11/2011 20:15:00
+Comments: ...
+************************************/ 
+#include "stdafx.h"
+using namespace UABuiltinType;
+using namespace UASubSystem;
+#include "VpiInternal.h"
+#include "OpcUaVpiMutSem.h"
+#ifdef _GNUC_
+#include <pthread.h>
+#include <semaphore.h>
+#include <sys/timeb.h>
+#endif
+CVpiInternalData::CVpiInternalData() 
+{
+	m_InternalStatus=OpcUa_Vpi_UnInitialized;
+	m_pVPINullEx = new CVPINullEx();
+	m_pVPINullEx->SetVpiInternalData(this);
+}
+CVpiInternalData::~CVpiInternalData() 
+{
+	delete m_pVPINullEx;
+}
+OpcUa_Vpi_StatusCode CVpiInternalData::LoadConfigurationFile()
+{
+	OpcUa_Vpi_StatusCode uStatus=OpcUa_Vpi_Good;
+
+	return uStatus;
+}
+
+// Function name   : CVpiInternalData::GetFileParameter
+// Description     : 
+// Return type     : OpcUa_Vpi_StatusCode 
+// Argument        : char* pItem
+// Argument        : OpcUa_String* p_Value
+
+OpcUa_Vpi_StatusCode CVpiInternalData::GetFileParameter(char* pItem, OpcUa_String* p_Value)
+{
+	char	Buffer [128];
+	char	s_Value [128];
+	char	Item [64];
+	FILE	* fp ;
+	int		nb;
+
+
+
+	if ((fp = fopen( m_ConfigFileName.strContent, "r")) != NULL) 
+	{
+
+		while (fgets( Buffer, sizeof(Buffer), fp) != NULL) 
+		{
+			nb = sscanf( Buffer, "%s %s", Item, s_Value);
+			if (nb == 2 && !strcmp( Item, pItem)) 
+			{
+				strcpy(p_Value->strContent, s_Value);
+				fclose( fp);
+				return OpcUa_Vpi_Good ;
+			}
+		}
+		fclose( fp);
+	} 
+
+	return OpcUa_Vpi_BadNotFound ;
+
+}

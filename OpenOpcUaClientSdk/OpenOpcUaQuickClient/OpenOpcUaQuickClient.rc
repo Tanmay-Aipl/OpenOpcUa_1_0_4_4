@@ -1,0 +1,693 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Neutre resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON_OPEN_OPC_UA    ICON                    "res\\OpenOpcUa.ico"
+#endif    // Neutre resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Français (France) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\UAQuickClient.ico"
+IDI_DATA_TYPE           ICON                    "res\\DataType.ico"
+IDI_METHOD              ICON                    "res\\Methode.ico"
+IDI_OBJECT              ICON                    "res\\object.ico"
+IDI_OBJECT_TYPE         ICON                    "res\\objectType.ico"
+IDI_REFERENCE_TYPE      ICON                    "res\\ReferenceType.ico"
+IDI_UNSPECIFIED         ICON                    "res\\unspecified.ico"
+IDI_VARIABLE            ICON                    "res\\variables.ico"
+IDI_VARIABLE_TYPE       ICON                    "res\\variableType.ico"
+IDI_VIEW                ICON                    "res\\View.ico"
+IDI_OPC                 ICON                    "res\\OPC.ico"
+IDI_REFRESH             ICON                    "res\\Refresh.ico"
+IDI_CONNECT             ICON                    "res\\Connect.ico"
+IDI_DISCONNECT          ICON                    "res\\Disconnect.ico"
+IDI_SUBSCRIPTION_ACTIVE ICON                    "res\\icon1.ico"
+IDI_SUBSCRIPTION_INACTIVE ICON                    "res\\ico00001.ico"
+IDI_SESSION_ACTIVE      ICON                    "res\\SessionActive.ico"
+IDI_SESSION_INACTIVE    ICON                    "res\\SessionInactive.ico"
+IDI_GREEN_CHECK         ICON                    "res\\greencheck.ico"
+IDI_GREEN_REFRESH       ICON                    "res\\greenrefresh.ico"
+IDI_DATATYPE_STRING     ICON                    "res\\string.ico"
+IDI_DATATYPE_LOGIC      ICON                    "res\\logic.ico"
+IDI_DATATYPE_NUMERIC    ICON                    "res\\numeric.ico"
+IDI_BROWSE              ICON                    "res\\icon3.ico"
+IDI_ATTRIBUTES          ICON                    "res\\attributes.ico"
+IDI_MESSAGE             ICON                    "res\\message.ico"
+IDI_EXIT                ICON                    "res\\Door-open.ico"
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""targetver.h""\r\n"
+    "#endif\r\n"
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)\r\n"
+    "LANGUAGE 12, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\UAQuickClient.rc2""  // ressources non modifiées par Microsoft Visual C++\r\n"
+    "#include ""l.FRA\\afxres.rc""      // Composants standard\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_UAQUICKCLIENT_DIALOG DIALOGEX 0, 0, 465, 209
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "OpenOpcUaQuickClient"
+MENU IDR_MAIN_MENU
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_TREE_SESSION_SUBSCRIPTION,"SysTreeView32",TVS_HASBUTTONS | TVS_HASLINES | TVS_LINESATROOT | TVS_SHOWSELALWAYS | WS_BORDER | WS_HSCROLL | WS_TABSTOP,7,46,162,156
+    CONTROL         "",IDC_MONITORED_ITEMCTRL,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,171,46,287,156
+    PUSHBUTTON      "Connect",IDC_BUTTON_CONNECT,426,17,32,26,BS_ICON
+    EDITTEXT        IDC_EDITENDPOINT_DESCRIPTION,7,28,411,15,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "",IDC_BUTTON_BROWSE,7,7,25,21,BS_BITMAP
+    PUSHBUTTON      "",IDC_BUTTON_ATTRIBUTE,35,7,25,21,BS_BITMAP
+    PUSHBUTTON      "",IDC_BUTTON_MESSAGE,65,7,25,21,BS_BITMAP
+    PUSHBUTTON      "",IDC_BUTTON_EXIT,95,7,25,21,BS_BITMAP
+END
+
+IDD_UA_BROWSER_DIALOG DIALOGEX 0, 0, 455, 225
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_BORDER | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,341,193,32,32,NOT WS_VISIBLE
+    PUSHBUTTON      "Cancel",IDCANCEL,377,193,32,32,NOT WS_VISIBLE
+    CONTROL         "",IDC_NODEIDS_TREE,"SysTreeView32",TVS_HASBUTTONS | TVS_HASLINES | TVS_LINESATROOT | TVS_SHOWSELALWAYS | TVS_TRACKSELECT | WS_BORDER | WS_HSCROLL | WS_TABSTOP,4,5,224,217
+    CONTROL         "",IDC_NODE_ATTRIBUTES_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_EDITLABELS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,234,5,216,186
+    PUSHBUTTON      "Refresh",IDC_BUTTON_REFRESH_ATTRIBUTES,418,193,32,32,BS_ICON
+END
+
+IDD_BROWSE_OPTION_DIALOG DIALOGEX 0, 0, 266, 71
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Browse Option"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,209,7,50,14
+    PUSHBUTTON      "Annuler",IDCANCEL,209,29,50,14
+    CONTROL         "Unspecified",IDC_CHECK_UNSPECIFIED_NODECLASS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,18,53,10
+    GROUPBOX        "Filter",IDC_STATIC,7,7,186,53
+    CONTROL         "Method",IDC_CHECK_METHOD_NODECLASS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,73,18,40,10
+    CONTROL         "ReferenceType",IDC_CHECK_REFERENCETYPE_NODECLASS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,121,18,65,10
+    CONTROL         "Object",IDC_CHECK_OBJECT_NODECLASS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,31,37,10
+    CONTROL         "ObjectType",IDC_CHECK_OBJECTTYPE_NODECLASS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,121,31,53,10
+    CONTROL         "DataType",IDC_CHECK_DATATYPE_NODECLASS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,73,45,47,10
+    CONTROL         "Variable",IDC_CHECK_VARIABLE_NODECLASS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,45,43,10
+    CONTROL         "VariableType",IDC_CHECK_VARIABLETYPE_NODECLASS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,121,45,59,10
+    CONTROL         "View",IDC_CHECK_VIEW_NODECLASS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,73,31,32,10
+    COMBOBOX        IDC_COMBO_BROWSE_DIRECTION,197,48,62,55,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_EXPORT_DIALOG DIALOGEX 0, 0, 316, 114
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Export"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Annuler",IDCANCEL,259,93,50,14
+    PUSHBUTTON      "Select",IDC_SELECT_FILE_BUTTON,259,12,50,14
+    EDITTEXT        IDC_EDIT_FILENAME,46,13,203,12,ES_AUTOHSCROLL
+    LTEXT           "Filename",IDC_STATIC,7,15,29,8
+    CONTROL         "NodeId",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,195,47,39,10
+    CONTROL         "BrowseName",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,245,47,57,10
+    CONTROL         "Datatype",IDC_CHECK3,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,195,66,42,10
+    CONTROL         "AccessLevel",IDC_CHECK4,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,245,66,55,10
+    PUSHBUTTON      "Export",IDC_EXPORT_BUTTON,189,93,50,14
+    CONTROL         "Unspecified",IDC_CHECK_UNSPECIFIED_NODECLASS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,47,53,10
+    GROUPBOX        "Filter",IDC_STATIC,7,36,181,53
+    CONTROL         "Method",IDC_CHECK_METHOD_NODECLASS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,73,47,40,10
+    CONTROL         "ReferenceType",IDC_CHECK_REFERENCETYPE_NODECLASS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,121,47,59,10
+    CONTROL         "Object",IDC_CHECK_OBJECT_NODECLASS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,60,37,10
+    CONTROL         "ObjectType",IDC_CHECK_OBJECTTYPE_NODECLASS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,121,60,53,10
+    CONTROL         "DataType",IDC_CHECK_DATATYPE_NODECLASS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,73,74,47,10
+    CONTROL         "Variable",IDC_CHECK_VARIABLE_NODECLASS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,74,43,10
+    CONTROL         "VariableType",IDC_CHECK_VARIABLETYPE_NODECLASS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,121,74,59,10
+    CONTROL         "View",IDC_CHECK_VIEW_NODECLASS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,73,60,32,10
+    CTEXT           "Static",IDC_EXPORT_RESULT,7,99,173,8
+END
+
+IDD_SESSION_PARAMS_DIALOG DIALOGEX 0, 0, 158, 68
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Session Param"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,7,47,50,14
+    PUSHBUTTON      "Annuler",IDCANCEL,83,47,50,14
+    CONTROL         "Active",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,13,36,10
+    EDITTEXT        IDC_KEEPALIVE_EDIT,83,11,42,14,ES_AUTOHSCROLL
+    LTEXT           "KeepAlive",IDC_STATIC,45,14,34,8
+    LTEXT           "Max message Size",IDC_STATIC,7,32,65,8
+    EDITTEXT        IDC_MAX_MESSAGESIZE_EDIT,83,29,42,14,ES_AUTOHSCROLL
+END
+
+IDD_SUBSCRIPTION_PARAM_DLG DIALOGEX 0, 0, 163, 132
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Subscription Parameters"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,23,111,50,14
+    PUSHBUTTON      "Annuler",IDCANCEL,89,111,50,14
+    LTEXT           "Publishing interval",IDC_STATIC,7,14,58,8
+    LTEXT           "Lifetime count",IDC_STATIC,7,32,46,8
+    LTEXT           "Max keepalive count",IDC_STATIC,7,50,66,8
+    LTEXT           "Max notification per publish",IDC_STATIC,7,68,94,8
+    LTEXT           "Priority",IDC_STATIC,7,86,24,8
+    EDITTEXT        IDC_PRIORITY,36,83,40,14,ES_AUTOHSCROLL
+    CONTROL         "Publishing enable",IDC_CHECK_PUBLISHING_ENABLED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,85,85,71,10
+    EDITTEXT        IDC_PUBLISHING_INTERVAL,108,11,48,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_LIFETIME_COUNT,108,29,48,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_KEEPALIVE_COUNT,108,47,48,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MAX_NOTIFICATION_PER_PUBLISH,108,65,48,14,ES_AUTOHSCROLL
+END
+
+IDD_WRITE_DIALOG DIALOGEX 0, 0, 325, 171
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION
+CAPTION "Write value to UANode"
+FONT 8, "Arial", 0, 0, 0x0
+BEGIN
+    EDITTEXT        IDC_NODEID,18,19,234,13,ES_AUTOHSCROLL
+    COMBOBOX        IDC_COMBO_ATTRIBUTEID,18,34,124,30,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_DATATYPE,149,34,102,30,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_ATTRIBUTE_VAL,15,65,57,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ATTRIBUTE_VAL_STR,90,64,222,15,ES_AUTOHSCROLL
+    CONTROL         "",IDC_LIST_ARRAY,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_EDITLABELS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,14,90,298,70
+    DEFPUSHBUTTON   "OK",IDOK,268,6,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,268,25,50,14
+    CONTROL         "",IDC_SPIN_REQUESTEDVALUE,"msctls_updown32",UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,74,65,11,13
+    GROUPBOX        "Requested Value",IDC_STATIC,7,54,311,115
+    GROUPBOX        "Node",IDC_STATIC,7,6,253,44
+END
+
+IDD_ATTRIBUTES_DIALOG DIALOGEX 0, 0, 300, 182
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_NODE_ATTRIBUTES_LIST,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,7,286,168
+END
+
+IDD_DIALOG_ENDPOINT_URL DIALOGEX 0, 0, 316, 51
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+CAPTION "Endpoint URL"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT_ENDPOINTURL,66,11,243,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,205,30,50,14
+    PUSHBUTTON      "Annuler",IDCANCEL,259,30,50,14
+    LTEXT           "Endpoint URL",IDC_STATIC,7,14,44,8
+END
+
+IDD_MESSAGE_DLG DIALOGEX 0, 0, 365, 150
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_POPUP | WS_BORDER
+EXSTYLE WS_EX_TOOLWINDOW
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_MESSAGE_LIST,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,7,351,136
+END
+
+IDD_DISCOVERY_DIALOG DIALOGEX 0, 0, 419, 112
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Server Endpoints"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT_HOSTNAME,7,7,107,14,ES_AUTOHSCROLL
+    COMBOBOX        IDC_COMBO_APP_NAME,120,7,168,59,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_ENDPOINTURL,7,24,281,14,ES_AUTOHSCROLL
+    GROUPBOX        "Message Security Mode",IDC_STATIC,296,7,97,49,WS_GROUP
+    CONTROL         "None",IDC_RADIO_NONE,"Button",BS_AUTORADIOBUTTON | WS_GROUP,306,19,33,10
+    CONTROL         "Sign",IDC_RADIO_SIGN,"Button",BS_AUTORADIOBUTTON,306,31,29,10
+    CONTROL         "Sign&&Encrypt",IDC_RADIO_SIGN_ENCRYPT,"Button",BS_AUTORADIOBUTTON,306,43,56,10
+    EDITTEXT        IDC_EDIT_SECURITY_POLICY_URI,7,43,281,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SPIN_ENDPOINT_DESCRIPTION,"msctls_updown32",UDS_ARROWKEYS | UDS_HORZ,380,81,32,24
+    CTEXT           "",IDC_CURRENT_ENDPOINT_DESCRIPTION,383,65,25,8
+    CONTROL         "",IDC_SELECT_BUTTOM,"MfcButton",WS_TABSTOP,344,81,32,24
+    CONTROL         "",IDC_REFRESH_BUTTON,"MfcButton",WS_TABSTOP,306,81,32,24
+END
+
+IDD_MONITOREDITEM_DIALOG DIALOGEX 0, 0, 223, 108
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+CAPTION "Monitored Item"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,113,87,50,14
+    PUSHBUTTON      "Annuler",IDCANCEL,166,87,50,14
+    COMBOBOX        IDC_COMBO_TIMESTAMP_TO_RETURN,7,41,58,30,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_NODEID,7,7,209,14,ES_AUTOHSCROLL
+    COMBOBOX        IDC_COMBO_DEADBAND_TYPE,12,71,50,30,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_QUEUE_SIZE,70,41,50,14,ES_AUTOHSCROLL
+    CONTROL         "Discard Oldest",IDC_CHECK_DISCARD_OLDEST,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,26,62,10
+    EDITTEXT        IDC_EDIT_SAMPLING_INTERVAL,126,41,41,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_DEADBAND_VALUE,12,85,50,14,ES_AUTOHSCROLL
+    GROUPBOX        "Deadband",IDC_STATIC,7,58,60,43
+    LTEXT           "Queue size",IDC_STATIC,70,32,36,8
+    LTEXT           "Sampling interval",IDC_STATIC,126,32,55,8
+    GROUPBOX        "Trigger",IDC_STATIC,70,58,146,25
+    CONTROL         "Value",IDC_CHECK_VALUE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,76,67,31,10
+    CONTROL         "StatusCode",IDC_CHECK_STATUSCODE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,109,67,50,10
+    CONTROL         "Timestamp",IDC_CHECK_TIMESTAMP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,162,67,47,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,2,5
+ PRODUCTVERSION 1,0,2,5
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040c04e4"
+        BEGIN
+            VALUE "CompanyName", "OpenOpcUa"
+            VALUE "FileDescription", "OpenOpcUaQuickClient"
+            VALUE "FileVersion", "1.0.2.5"
+            VALUE "InternalName", "OpenOpcUaQuickClient.exe"
+            VALUE "LegalCopyright", "OpenOpcUa and Michel Condemie"
+            VALUE "LegalTrademarks", "OpenOpcUa and Michel Condemie"
+            VALUE "OriginalFilename", "OpenOpcUaQuickClient.exe"
+            VALUE "ProductName", "OpenOpcUaQuickClient"
+            VALUE "ProductVersion", "1.0.2.5"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x40c, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_UAQUICKCLIENT_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 458
+        VERTGUIDE, 120
+        VERTGUIDE, 125
+        VERTGUIDE, 212
+        VERTGUIDE, 217
+        VERTGUIDE, 358
+        VERTGUIDE, 362
+        VERTGUIDE, 402
+        VERTGUIDE, 418
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 202
+        HORZGUIDE, 28
+        HORZGUIDE, 43
+        HORZGUIDE, 46
+        HORZGUIDE, 180
+    END
+
+    IDD_UA_BROWSER_DIALOG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 454
+        VERTGUIDE, 4
+        VERTGUIDE, 228
+        VERTGUIDE, 234
+        VERTGUIDE, 450
+        HORZGUIDE, 5
+    END
+
+    IDD_BROWSE_OPTION_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 259
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 63
+    END
+
+    IDD_EXPORT_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 309
+        VERTGUIDE, 60
+        VERTGUIDE, 130
+        VERTGUIDE, 180
+        VERTGUIDE, 195
+        VERTGUIDE, 245
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 107
+        HORZGUIDE, 19
+        HORZGUIDE, 36
+        HORZGUIDE, 52
+        HORZGUIDE, 66
+        HORZGUIDE, 71
+        HORZGUIDE, 84
+    END
+
+    IDD_SESSION_PARAMS_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 151
+        VERTGUIDE, 72
+        VERTGUIDE, 83
+        VERTGUIDE, 125
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 61
+        HORZGUIDE, 18
+        HORZGUIDE, 36
+    END
+
+    IDD_SUBSCRIPTION_PARAM_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 156
+        VERTGUIDE, 108
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 125
+        HORZGUIDE, 18
+        HORZGUIDE, 36
+        HORZGUIDE, 54
+        HORZGUIDE, 72
+        HORZGUIDE, 90
+    END
+
+    IDD_WRITE_DIALOG, DIALOG
+    BEGIN
+        VERTGUIDE, 18
+    END
+
+    IDD_ATTRIBUTES_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 293
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 175
+    END
+
+    IDD_DIALOG_ENDPOINT_URL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 309
+        VERTGUIDE, 60
+        VERTGUIDE, 66
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 44
+        HORZGUIDE, 18
+    END
+
+    IDD_MESSAGE_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 358
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 143
+    END
+
+    IDD_DISCOVERY_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 412
+        VERTGUIDE, 114
+        VERTGUIDE, 120
+        VERTGUIDE, 288
+        VERTGUIDE, 306
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 105
+        HORZGUIDE, 24
+        HORZGUIDE, 36
+        HORZGUIDE, 48
+        HORZGUIDE, 59
+        HORZGUIDE, 65
+    END
+
+    IDD_MONITOREDITEM_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 216
+        VERTGUIDE, 12
+        VERTGUIDE, 70
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 101
+        HORZGUIDE, 36
+        HORZGUIDE, 48
+        HORZGUIDE, 72
+        HORZGUIDE, 83
+        HORZGUIDE, 92
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_TREECTRL_SESSION_CONTEXT_MENU MENU
+BEGIN
+    POPUP "_POPUP_MENU_"
+    BEGIN
+        MENUITEM "Close Session",               IDM_CLOSE_SESSION
+        MENUITEM "Create Subscription",         IDM_CREATE_SUBSCRIPTION
+        MENUITEM SEPARATOR
+        MENUITEM "Write",                       IDM_WRITE_ATTRIBUTES
+        MENUITEM "Read",                        IDM_READ_ATTRIBUTES
+    END
+END
+
+IDR_TREECTRL_SUBSCRIPTION_CONTEXT_MENU MENU
+BEGIN
+    POPUP "_POPUP_MENU"
+    BEGIN
+        MENUITEM "Monitored Mode",              ID__MONITOREDMODE
+        MENUITEM "Remove Subscription",         ID__REMOVESUBSCRIPTION
+        MENUITEM "Change Params",               ID__CHANGEPARAMS
+    END
+END
+
+IDR_BROWSE_MENU MENU
+BEGIN
+    POPUP "_POPUP_MENU"
+    BEGIN
+        MENUITEM "Browse Option",               IDM_BROWSE_OPTION
+        MENUITEM "Export",                      IDM_EXPORT
+        MENUITEM SEPARATOR
+        MENUITEM "Monitor",                     IDM_MONITOR
+    END
+END
+
+IDR_MONITORED_ITEM_CONTEXT_MENU MENU
+BEGIN
+    POPUP "_POPUP_MENU_"
+    BEGIN
+        MENUITEM "Attributes",                  IDM_ATTRIBUTES
+        MENUITEM "Write",                       IDM_WRITE
+        MENUITEM SEPARATOR
+        MENUITEM "Delete",                      IDM_DELETE
+        MENUITEM "Modify",                      IDM_MODIFY
+    END
+END
+
+IDR_MAIN_MENU MENU
+BEGIN
+    POPUP "File"
+    BEGIN
+        MENUITEM "Load",                        ID_FILE_LOAD
+        MENUITEM "Save",                        ID_FILE_SAVE
+        MENUITEM "Exit",                        ID_FILE_EXIT
+    END
+    POPUP "View"
+    BEGIN
+        MENUITEM "Attributes",                  ID_VIEW_ATTRIBUTE
+        MENUITEM "Browser",                     ID_VIEW_BROWSER
+        MENUITEM "Message",                     ID_VIEW_MESSAGE
+    END
+    POPUP "Discover"
+    BEGIN
+        MENUITEM "Server",                      IDM_DISCOVER_SERVER
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_BROWSE_OPTION_DIALOG DLGINIT
+BEGIN
+    IDC_COMBO_BROWSE_DIRECTION, 0x403, 8, 0
+0x6f46, 0x7772, 0x7261, 0x0064, 
+    IDC_COMBO_BROWSE_DIRECTION, 0x403, 8, 0
+0x6e49, 0x6576, 0x7372, 0x0065, 
+    IDC_COMBO_BROWSE_DIRECTION, 0x403, 5, 0
+0x6f42, 0x6874, "\000" 
+    0
+END
+
+IDD_DISCOVERY_DIALOG DLGINIT
+BEGIN
+    IDC_SELECT_BUTTOM, 0x37c, 479, 0
+0x4d3c, 0x4346, 0x7542, 0x7474, 0x6e6f, 0x535f, 0x7974, 0x656c, 0x343e, 
+0x2f3c, 0x464d, 0x4243, 0x7475, 0x6f74, 0x5f6e, 0x7453, 0x6c79, 0x3e65, 
+0x4d3c, 0x4346, 0x7542, 0x7474, 0x6e6f, 0x415f, 0x7475, 0x736f, 0x7a69, 
+0x3e65, 0x4146, 0x534c, 0x3c45, 0x4d2f, 0x4346, 0x7542, 0x7474, 0x6e6f, 
+0x415f, 0x7475, 0x736f, 0x7a69, 0x3e65, 0x4d3c, 0x4346, 0x7542, 0x7474, 
+0x6e6f, 0x545f, 0x6f6f, 0x746c, 0x7069, 0x533e, 0x6c65, 0x6365, 0x2074, 
+0x6e61, 0x4520, 0x646e, 0x6f70, 0x6e69, 0x3c74, 0x4d2f, 0x4346, 0x7542, 
+0x7474, 0x6e6f, 0x545f, 0x6f6f, 0x746c, 0x7069, 0x3c3e, 0x464d, 0x4243, 
+0x7475, 0x6f74, 0x5f6e, 0x7546, 0x6c6c, 0x6554, 0x7478, 0x6f54, 0x6c6f, 
+0x543e, 0x5552, 0x3c45, 0x4d2f, 0x4346, 0x7542, 0x7474, 0x6e6f, 0x465f, 
+0x6c75, 0x546c, 0x7865, 0x5474, 0x6f6f, 0x3e6c, 0x4d3c, 0x4346, 0x7542, 
+0x7474, 0x6e6f, 0x435f, 0x7275, 0x6f73, 0x5472, 0x7079, 0x3e65, 0x3131, 
+0x2f3c, 0x464d, 0x4243, 0x7475, 0x6f74, 0x5f6e, 0x7543, 0x7372, 0x726f, 
+0x7954, 0x6570, 0x3c3e, 0x464d, 0x4243, 0x7475, 0x6f74, 0x5f6e, 0x6d49, 
+0x6761, 0x5465, 0x7079, 0x3e65, 0x3c39, 0x4d2f, 0x4346, 0x7542, 0x7474, 
+0x6e6f, 0x495f, 0x616d, 0x6567, 0x7954, 0x6570, 0x3c3e, 0x464d, 0x4243, 
+0x7475, 0x6f74, 0x5f6e, 0x6d49, 0x6761, 0x4965, 0x3e44, 0x3531, 0x3c37, 
+0x4d2f, 0x4346, 0x7542, 0x7474, 0x6e6f, 0x495f, 0x616d, 0x6567, 0x4449, 
+0x3c3e, 0x464d, 0x4243, 0x7475, 0x6f74, 0x5f6e, 0x6d49, 0x6761, 0x3e65, 
+0x4449, 0x5f49, 0x5247, 0x4545, 0x5f4e, 0x4843, 0x4345, 0x3c4b, 0x4d2f, 
+0x4346, 0x7542, 0x7474, 0x6e6f, 0x495f, 0x616d, 0x6567, 0x3c3e, 0x464d, 
+0x4243, 0x7475, 0x6f74, 0x5f6e, 0x6d49, 0x6761, 0x4f65, 0x546e, 0x706f, 
+0x463e, 0x4c41, 0x4553, 0x2f3c, 0x464d, 0x4243, 0x7475, 0x6f74, 0x5f6e, 
+0x6d49, 0x6761, 0x4f65, 0x546e, 0x706f, 0x3c3e, 0x464d, 0x4243, 0x7475, 
+0x6f74, 0x5f6e, 0x6d49, 0x6761, 0x4f65, 0x526e, 0x6769, 0x7468, 0x463e, 
+0x4c41, 0x4553, 0x2f3c, 0x464d, 0x4243, 0x7475, 0x6f74, 0x5f6e, 0x6d49, 
+0x6761, 0x4f65, 0x526e, 0x6769, 0x7468, "\076" 
+    IDC_REFRESH_BUTTON, 0x37c, 480, 0
+0x4d3c, 0x4346, 0x7542, 0x7474, 0x6e6f, 0x535f, 0x7974, 0x656c, 0x343e, 
+0x2f3c, 0x464d, 0x4243, 0x7475, 0x6f74, 0x5f6e, 0x7453, 0x6c79, 0x3e65, 
+0x4d3c, 0x4346, 0x7542, 0x7474, 0x6e6f, 0x415f, 0x7475, 0x736f, 0x7a69, 
+0x3e65, 0x4146, 0x534c, 0x3c45, 0x4d2f, 0x4346, 0x7542, 0x7474, 0x6e6f, 
+0x415f, 0x7475, 0x736f, 0x7a69, 0x3e65, 0x4d3c, 0x4346, 0x7542, 0x7474, 
+0x6e6f, 0x545f, 0x6f6f, 0x746c, 0x7069, 0x523e, 0x6665, 0x6572, 0x6873, 
+0x4520, 0x646e, 0x6f70, 0x6e69, 0x7374, 0x2f3c, 0x464d, 0x4243, 0x7475, 
+0x6f74, 0x5f6e, 0x6f54, 0x6c6f, 0x6974, 0x3e70, 0x4d3c, 0x4346, 0x7542, 
+0x7474, 0x6e6f, 0x465f, 0x6c75, 0x546c, 0x7865, 0x5474, 0x6f6f, 0x3e6c, 
+0x5254, 0x4555, 0x2f3c, 0x464d, 0x4243, 0x7475, 0x6f74, 0x5f6e, 0x7546, 
+0x6c6c, 0x6554, 0x7478, 0x6f54, 0x6c6f, 0x3c3e, 0x464d, 0x4243, 0x7475, 
+0x6f74, 0x5f6e, 0x7543, 0x7372, 0x726f, 0x7954, 0x6570, 0x313e, 0x3c31, 
+0x4d2f, 0x4346, 0x7542, 0x7474, 0x6e6f, 0x435f, 0x7275, 0x6f73, 0x5472, 
+0x7079, 0x3e65, 0x4d3c, 0x4346, 0x7542, 0x7474, 0x6e6f, 0x495f, 0x616d, 
+0x6567, 0x7954, 0x6570, 0x393e, 0x2f3c, 0x464d, 0x4243, 0x7475, 0x6f74, 
+0x5f6e, 0x6d49, 0x6761, 0x5465, 0x7079, 0x3e65, 0x4d3c, 0x4346, 0x7542, 
+0x7474, 0x6e6f, 0x495f, 0x616d, 0x6567, 0x4449, 0x313e, 0x3935, 0x2f3c, 
+0x464d, 0x4243, 0x7475, 0x6f74, 0x5f6e, 0x6d49, 0x6761, 0x4965, 0x3e44, 
+0x4d3c, 0x4346, 0x7542, 0x7474, 0x6e6f, 0x495f, 0x616d, 0x6567, 0x493e, 
+0x4944, 0x475f, 0x4552, 0x4e45, 0x525f, 0x4645, 0x4552, 0x4853, 0x2f3c, 
+0x464d, 0x4243, 0x7475, 0x6f74, 0x5f6e, 0x6d49, 0x6761, 0x3e65, 0x4d3c, 
+0x4346, 0x7542, 0x7474, 0x6e6f, 0x495f, 0x616d, 0x6567, 0x6e4f, 0x6f54, 
+0x3e70, 0x4146, 0x534c, 0x3c45, 0x4d2f, 0x4346, 0x7542, 0x7474, 0x6e6f, 
+0x495f, 0x616d, 0x6567, 0x6e4f, 0x6f54, 0x3e70, 0x4d3c, 0x4346, 0x7542, 
+0x7474, 0x6e6f, 0x495f, 0x616d, 0x6567, 0x6e4f, 0x6952, 0x6867, 0x3e74, 
+0x4146, 0x534c, 0x3c45, 0x4d2f, 0x4346, 0x7542, 0x7474, 0x6e6f, 0x495f, 
+0x616d, 0x6567, 0x6e4f, 0x6952, 0x6867, 0x3e74, 
+    0
+END
+
+#endif    // Français (France) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+LANGUAGE 12, 1
+#pragma code_page(1252)
+#include "res\UAQuickClient.rc2"  // ressources non modifiées par Microsoft Visual C++
+#include "l.FRA\afxres.rc"      // Composants standard
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,430 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>OpenOpcUaStackV1</ProjectName>
+    <ProjectGuid>{8A4A3203-7473-4B55-BE8B-0AEE7187CCFA}</ProjectGuid>
+    <RootNamespace>UAStackV1</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
+    <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <LinkDelaySign>false</LinkDelaySign>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+      <Message>Create the destination folder for librairies and binaries</Message>
+    </PreBuildEvent>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\include\opcua;..\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_WINDOWS;_CRT_SECURE_NO_WARNINGS;WIN32;QT_LARGEFILE_SUPPORT;_UA_STACK_BUILD_DLL;OPCUA_HAVE_HTTPS;_WINSOCK_DEPRECATED_NO_WARNINGS;</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>ssleay32.lib;libeay32.lib;Crypt32.lib;ws2_32.lib;rpcrt4.lib;user32.lib;advapi32.lib;Kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)OpenOpcUaStackV1d.dll</OutputFile>
+      <AdditionalLibraryDirectories>..\lib\win32\vs2013;..\lib\win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
+    </Link>
+    <PostBuildEvent>
+      <Message>Copie de la stack UA (LIB et DLL)</Message>
+      <Command>copy "$(OutDir)$(TargetName).lib" ..\lib\win32\vs2013
+copy "$(OutDir)$(TargetName).dll" ..\bin\win32\vs2013
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+      <Message>Create the destination folder for librairies and binaries</Message>
+    </PreBuildEvent>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>..\include\opcua;..\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;_USRDLL;_WINDOWS;_CRT_SECURE_NO_WARNINGS;WIN32;QT_LARGEFILE_SUPPORT;_UA_STACK_BUILD_DLL;OPCUA_HAVE_HTTPS;_WINSOCK_DEPRECATED_NO_WARNINGS;</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader />
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalOptions> /Qvec-report:2</AdditionalOptions>
+    </ClCompile>
+    <ResourceCompile>
+      <ResourceOutputFileName>$(IntDir)%(Filename).res</ResourceOutputFileName>
+    </ResourceCompile>
+    <ProjectReference>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <Link>
+      <AdditionalDependencies>ssleay32.lib;libeay32.lib;Crypt32.lib;ws2_32.lib;rpcrt4.lib;user32.lib;gdi32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)OpenOpcUaStackV1.dll</OutputFile>
+      <AdditionalLibraryDirectories>..\lib\win32\vs2013;..\lib\win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy "$(OutDir)$(TargetName).lib" ..\Lib\win32\vs2013
+copy "$(OutDir)$(TargetName).dll" ..\bin\win32\vs2013
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="source\opcua_asynccallstate.c" />
+    <ClCompile Include="source\opcua_base64.c" />
+    <ClCompile Include="source\opcua_binarydecoder.c" />
+    <ClCompile Include="source\opcua_binaryencoder.c" />
+    <ClCompile Include="source\opcua_buffer.c" />
+    <ClCompile Include="source\opcua_builtintypes.c" />
+    <ClCompile Include="source\opcua_channel.c" />
+    <ClCompile Include="source\opcua_clientapi.c" />
+    <ClCompile Include="source\opcua_connection.c" />
+    <ClCompile Include="source\opcua_core.c" />
+    <ClCompile Include="source\opcua_crypto.c" />
+    <ClCompile Include="source\opcua_datetime.c" />
+    <ClCompile Include="source\opcua_decoder.c" />
+    <ClCompile Include="source\opcua_encodeableobject.c" />
+    <ClCompile Include="source\opcua_encoder.c" />
+    <ClCompile Include="source\opcua_endpoint.c" />
+    <ClCompile Include="source\opcua_endpoint_ex.c" />
+    <ClCompile Include="source\opcua_enumeratedtype.c" />
+    <ClCompile Include="source\opcua_extensionobject.c" />
+    <ClCompile Include="source\opcua_guid.c" />
+    <ClCompile Include="source\opcua_https_connection.c" />
+    <ClCompile Include="source\opcua_https_internal.c" />
+    <ClCompile Include="source\opcua_https_listener.c" />
+    <ClCompile Include="source\opcua_https_listener_connectionmanager.c" />
+    <ClCompile Include="source\opcua_https_secureconnection.c" />
+    <ClCompile Include="source\opcua_httpsstream.c" />
+    <ClCompile Include="source\opcua_list.c" />
+    <ClCompile Include="source\opcua_listener.c" />
+    <ClCompile Include="source\opcua_memory.c">
+      <ShowIncludes Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ShowIncludes>
+    </ClCompile>
+    <ClCompile Include="source\opcua_memorystream.c" />
+    <ClCompile Include="source\opcua_messagecontext.c" />
+    <ClCompile Include="source\opcua_p_binary.c" />
+    <ClCompile Include="source\opcua_p_cryptofactory.c" />
+    <ClCompile Include="source\opcua_p_datetime.c" />
+    <ClCompile Include="source\opcua_p_guid.c">
+      <ShowIncludes Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ShowIncludes>
+    </ClCompile>
+    <ClCompile Include="source\opcua_p_interface.c" />
+    <ClCompile Include="source\opcua_p_internal.c" />
+    <ClCompile Include="source\opcua_p_libxml2.c" />
+    <ClCompile Include="source\opcua_p_memory.c" />
+    <ClCompile Include="source\opcua_p_openssl.c" />
+    <ClCompile Include="source\opcua_p_openssl_3des.c" />
+    <ClCompile Include="source\opcua_p_openssl_aes.c" />
+    <ClCompile Include="source\opcua_p_openssl_ecdsa.c" />
+    <ClCompile Include="source\opcua_p_openssl_hmac_sha.c" />
+    <ClCompile Include="source\opcua_p_openssl_pki.c" />
+    <ClCompile Include="source\opcua_p_openssl_random.c" />
+    <ClCompile Include="source\opcua_p_openssl_rsa.c" />
+    <ClCompile Include="source\opcua_p_openssl_sha.c" />
+    <ClCompile Include="source\opcua_p_openssl_x509.c" />
+    <ClCompile Include="source\opcua_p_pki_nosecurity.c" />
+    <ClCompile Include="source\opcua_p_pkifactory.c" />
+    <ClCompile Include="source\opcua_p_securitypolicy_none.c" />
+    <ClCompile Include="source\opcua_p_socket.c" />
+    <ClCompile Include="source\opcua_p_socket_interface.c" />
+    <ClCompile Include="source\opcua_p_socket_internal.c" />
+    <ClCompile Include="source\opcua_p_string.c" />
+    <ClCompile Include="source\opcua_p_thread.c" />
+    <ClCompile Include="source\opcua_p_timer.c" />
+    <ClCompile Include="source\opcua_p_utilities.c" />
+    <ClCompile Include="source\opcua_p_win32_pki.c" />
+    <ClCompile Include="source\opcua_p_wincrypt_random.c" />
+    <ClCompile Include="source\opcua_proxystub.c" />
+    <ClCompile Include="source\opcua_securechannel.c" />
+    <ClCompile Include="source\opcua_secureconnection.c" />
+    <ClCompile Include="source\opcua_securelistener.c" />
+    <ClCompile Include="source\opcua_securelistener_channelmanager.c" />
+    <ClCompile Include="source\opcua_securelistener_policymanager.c" />
+    <ClCompile Include="source\opcua_securestream.c" />
+    <ClCompile Include="source\opcua_serverapi.c" />
+    <ClCompile Include="source\opcua_servicetable.c" />
+    <ClCompile Include="source\opcua_stream.c" />
+    <ClCompile Include="source\opcua_string.c" />
+    <ClCompile Include="source\opcua_stringtable.c" />
+    <ClCompile Include="source\opcua_tcpconnection.c" />
+    <ClCompile Include="source\opcua_tcplistener.c" />
+    <ClCompile Include="source\opcua_tcplistener_connectionmanager.c" />
+    <ClCompile Include="source\opcua_tcpsecurechannel.c" />
+    <ClCompile Include="source\opcua_tcpstream.c" />
+    <ClCompile Include="source\opcua_thread.c" />
+    <ClCompile Include="source\opcua_threadpool.c" />
+    <ClCompile Include="source\opcua_timer.c" />
+    <ClCompile Include="source\opcua_trace.c" />
+    <ClCompile Include="source\opcua_types.c" />
+    <ClCompile Include="source\opcua_utilities.c" />
+    <ClCompile Include="source\opcua_xmldecoder.c" />
+    <ClCompile Include="source\opcua_xmlencoder.c" />
+    <ClCompile Include="source\opcua_xmlreader.c" />
+    <ClCompile Include="source\opcua_xmlwriter.c" />
+    <ClCompile Include="include\win32\openssl\applink.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\shared\opcua.h" />
+    <ClInclude Include="include\shared\opcua_asynccallstate.h" />
+    <ClInclude Include="include\shared\opcua_attributes.h" />
+    <ClInclude Include="include\shared\opcua_base64.h" />
+    <ClInclude Include="include\shared\opcua_binaryencoder.h" />
+    <ClInclude Include="include\shared\opcua_binaryencoderinternal.h" />
+    <ClInclude Include="include\shared\opcua_browsenames.h" />
+    <ClInclude Include="include\shared\opcua_buffer.h" />
+    <ClInclude Include="include\shared\opcua_builtintypes.h" />
+    <ClInclude Include="include\shared\opcua_channel.h" />
+    <ClInclude Include="include\shared\opcua_channel_internal.h" />
+    <ClInclude Include="include\shared\opcua_clientapi.h" />
+    <ClInclude Include="include\shared\opcua_clientproxy.h" />
+    <ClInclude Include="include\shared\opcua_config.h" />
+    <ClInclude Include="include\shared\opcua_connection.h" />
+    <ClInclude Include="include\shared\opcua_core.h" />
+    <ClInclude Include="include\shared\opcua_credentials.h" />
+    <ClInclude Include="include\shared\opcua_crypto.h" />
+    <ClInclude Include="include\shared\opcua_cryptofactory.h" />
+    <ClInclude Include="include\shared\opcua_datetime.h" />
+    <ClInclude Include="include\shared\opcua_decoder.h" />
+    <ClInclude Include="include\shared\opcua_encodeableobject.h" />
+    <ClInclude Include="include\shared\opcua_encoder.h" />
+    <ClInclude Include="include\shared\opcua_endpoint.h" />
+    <ClInclude Include="include\shared\opcua_endpoint_ex.h" />
+    <ClInclude Include="include\shared\opcua_endpoint_internal.h" />
+    <ClInclude Include="include\shared\opcua_enumeratedtype.h" />
+    <ClInclude Include="include\shared\opcua_errorhandling.h" />
+    <ClInclude Include="include\shared\opcua_exclusions.h" />
+    <ClInclude Include="include\shared\opcua_extensionobject.h" />
+    <ClInclude Include="include\shared\opcua_guid.h" />
+    <ClInclude Include="include\shared\opcua_https_connection.h" />
+    <ClInclude Include="include\shared\opcua_https_internal.h" />
+    <ClInclude Include="include\shared\opcua_https_listener.h" />
+    <ClInclude Include="include\shared\opcua_https_listener_connectionmanager.h" />
+    <ClInclude Include="include\shared\opcua_https_secureconnection.h" />
+    <ClInclude Include="include\shared\opcua_httpsstream.h" />
+    <ClInclude Include="include\shared\opcua_identifiers.h" />
+    <ClInclude Include="include\shared\opcua_list.h" />
+    <ClInclude Include="include\shared\opcua_listener.h" />
+    <ClInclude Include="include\shared\opcua_memory.h" />
+    <ClInclude Include="include\shared\opcua_memorystream.h" />
+    <ClInclude Include="include\shared\opcua_messagecontext.h" />
+    <ClInclude Include="include\shared\opcua_mutex.h" />
+    <ClInclude Include="include\shared\opcua_p_binary.h" />
+    <ClInclude Include="include\shared\opcua_p_compilerinfo.h" />
+    <ClInclude Include="include\shared\opcua_p_crypto.h" />
+    <ClInclude Include="include\shared\opcua_p_cryptofactory.h" />
+    <ClInclude Include="include\shared\opcua_p_datetime.h" />
+    <ClInclude Include="include\shared\opcua_p_guid.h" />
+    <ClInclude Include="include\shared\opcua_p_interface.h" />
+    <ClInclude Include="include\shared\opcua_p_internal.h" />
+    <ClInclude Include="include\shared\opcua_p_memory.h" />
+    <ClInclude Include="include\shared\opcua_p_openssl.h" />
+    <ClInclude Include="include\shared\opcua_p_openssl_pki.h" />
+    <ClInclude Include="include\shared\opcua_p_os.h" />
+    <ClInclude Include="include\shared\opcua_p_pki.h" />
+    <ClInclude Include="include\shared\opcua_p_pki_nosecurity.h" />
+    <ClInclude Include="include\shared\opcua_p_pkifactory.h" />
+    <ClInclude Include="include\shared\opcua_p_securitypolicy_none.h" />
+    <ClInclude Include="include\shared\opcua_p_semaphore.h" />
+    <ClInclude Include="include\shared\opcua_p_socket.h" />
+    <ClInclude Include="include\shared\opcua_p_socket_interface.h" />
+    <ClInclude Include="include\shared\opcua_p_socket_internal.h" />
+    <ClInclude Include="include\shared\opcua_p_string.h" />
+    <ClInclude Include="include\shared\opcua_p_thread.h" />
+    <ClInclude Include="include\shared\opcua_p_timer.h" />
+    <ClInclude Include="include\shared\opcua_p_types.h" />
+    <ClInclude Include="include\shared\opcua_p_utilities.h" />
+    <ClInclude Include="include\shared\opcua_p_win32_pki.h" />
+    <ClInclude Include="include\shared\opcua_p_wincrypt.h" />
+    <ClInclude Include="include\shared\opcua_p_xml.h" />
+    <ClInclude Include="include\shared\opcua_pki.h" />
+    <ClInclude Include="include\shared\opcua_pkifactory.h" />
+    <ClInclude Include="include\shared\opcua_platformdefs.h" />
+    <ClInclude Include="include\shared\opcua_proxystub.h" />
+    <ClInclude Include="include\shared\opcua_securechannel.h" />
+    <ClInclude Include="include\shared\opcua_securechannel_types.h" />
+    <ClInclude Include="include\shared\opcua_secureconnection.h" />
+    <ClInclude Include="include\shared\opcua_securelistener.h" />
+    <ClInclude Include="include\shared\opcua_securelistener_channelmanager.h" />
+    <ClInclude Include="include\shared\opcua_securelistener_policymanager.h" />
+    <ClInclude Include="include\shared\opcua_securestream.h" />
+    <ClInclude Include="include\shared\opcua_semaphore.h" />
+    <ClInclude Include="include\shared\opcua_serverapi.h" />
+    <ClInclude Include="include\shared\opcua_serverstub.h" />
+    <ClInclude Include="include\shared\opcua_servicetable.h" />
+    <ClInclude Include="include\shared\opcua_soapsecurechannel.h" />
+    <ClInclude Include="include\shared\opcua_socket.h" />
+    <ClInclude Include="include\shared\opcua_stackstatuscodes.h" />
+    <ClInclude Include="include\shared\opcua_statuscodes.h" />
+    <ClInclude Include="include\shared\opcua_stream.h" />
+    <ClInclude Include="include\shared\opcua_string.h" />
+    <ClInclude Include="include\shared\opcua_stringtable.h" />
+    <ClInclude Include="include\shared\opcua_tcpconnection.h" />
+    <ClInclude Include="include\shared\opcua_tcplistener.h" />
+    <ClInclude Include="include\shared\opcua_tcplistener_connectionmanager.h" />
+    <ClInclude Include="include\shared\opcua_tcpsecurechannel.h" />
+    <ClInclude Include="include\shared\opcua_tcpstream.h" />
+    <ClInclude Include="include\shared\opcua_thread.h" />
+    <ClInclude Include="include\shared\opcua_threadpool.h" />
+    <ClInclude Include="include\shared\opcua_timer.h" />
+    <ClInclude Include="include\shared\opcua_trace.h" />
+    <ClInclude Include="include\shared\opcua_types.h" />
+    <ClInclude Include="include\shared\opcua_utilities.h" />
+    <ClInclude Include="include\shared\opcua_xmldefs.h" />
+    <ClInclude Include="include\shared\opcua_xmlencoder.h" />
+    <ClInclude Include="include\shared\opcua_xmlencoderinternal.h" />
+    <ClInclude Include="include\shared\opcua_xmlreader.h" />
+    <ClInclude Include="include\shared\opcua_xmlwriter.h" />
+    <ClInclude Include="include\shared\resource.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="include\win32\openssl\aes.h" />
+    <ClInclude Include="include\win32\openssl\asn1.h" />
+    <ClInclude Include="include\win32\openssl\asn1_mac.h" />
+    <ClInclude Include="include\win32\openssl\asn1t.h" />
+    <ClInclude Include="include\win32\openssl\bio.h" />
+    <ClInclude Include="include\win32\openssl\blowfish.h" />
+    <ClInclude Include="include\win32\openssl\bn.h" />
+    <ClInclude Include="include\win32\openssl\buffer.h" />
+    <ClInclude Include="include\win32\openssl\camellia.h" />
+    <ClInclude Include="include\win32\openssl\cast.h" />
+    <ClInclude Include="include\win32\openssl\cmac.h" />
+    <ClInclude Include="include\win32\openssl\cms.h" />
+    <ClInclude Include="include\win32\openssl\comp.h" />
+    <ClInclude Include="include\win32\openssl\conf.h" />
+    <ClInclude Include="include\win32\openssl\conf_api.h" />
+    <ClInclude Include="include\win32\openssl\crypto.h" />
+    <ClInclude Include="include\win32\openssl\des.h" />
+    <ClInclude Include="include\win32\openssl\des_old.h" />
+    <ClInclude Include="include\win32\openssl\dh.h" />
+    <ClInclude Include="include\win32\openssl\dsa.h" />
+    <ClInclude Include="include\win32\openssl\dso.h" />
+    <ClInclude Include="include\win32\openssl\dtls1.h" />
+    <ClInclude Include="include\win32\openssl\e_os2.h" />
+    <ClInclude Include="include\win32\openssl\ebcdic.h" />
+    <ClInclude Include="include\win32\openssl\ec.h" />
+    <ClInclude Include="include\win32\openssl\ecdh.h" />
+    <ClInclude Include="include\win32\openssl\ecdsa.h" />
+    <ClInclude Include="include\win32\openssl\engine.h" />
+    <ClInclude Include="include\win32\openssl\err.h" />
+    <ClInclude Include="include\win32\openssl\evp.h" />
+    <ClInclude Include="include\win32\openssl\hmac.h" />
+    <ClInclude Include="include\win32\openssl\idea.h" />
+    <ClInclude Include="include\win32\openssl\krb5_asn.h" />
+    <ClInclude Include="include\win32\openssl\kssl.h" />
+    <ClInclude Include="include\win32\openssl\lhash.h" />
+    <ClInclude Include="include\win32\openssl\md4.h" />
+    <ClInclude Include="include\win32\openssl\md5.h" />
+    <ClInclude Include="include\win32\openssl\mdc2.h" />
+    <ClInclude Include="include\win32\openssl\modes.h" />
+    <ClInclude Include="include\win32\openssl\obj_mac.h" />
+    <ClInclude Include="include\win32\openssl\objects.h" />
+    <ClInclude Include="include\win32\openssl\ocsp.h" />
+    <ClInclude Include="include\win32\openssl\opensslconf.h" />
+    <ClInclude Include="include\win32\openssl\opensslv.h" />
+    <ClInclude Include="include\win32\openssl\ossl_typ.h" />
+    <ClInclude Include="include\win32\openssl\pem.h" />
+    <ClInclude Include="include\win32\openssl\pem2.h" />
+    <ClInclude Include="include\win32\openssl\pkcs12.h" />
+    <ClInclude Include="include\win32\openssl\pkcs7.h" />
+    <ClInclude Include="include\win32\openssl\pq_compat.h" />
+    <ClInclude Include="include\win32\openssl\pqueue.h" />
+    <ClInclude Include="include\win32\openssl\rand.h" />
+    <ClInclude Include="include\win32\openssl\rc2.h" />
+    <ClInclude Include="include\win32\openssl\rc4.h" />
+    <ClInclude Include="include\win32\openssl\ripemd.h" />
+    <ClInclude Include="include\win32\openssl\rsa.h" />
+    <ClInclude Include="include\win32\openssl\safestack.h" />
+    <ClInclude Include="include\win32\openssl\seed.h" />
+    <ClInclude Include="include\win32\openssl\sha.h" />
+    <ClInclude Include="include\win32\openssl\srp.h" />
+    <ClInclude Include="include\win32\openssl\srtp.h" />
+    <ClInclude Include="include\win32\openssl\ssl.h" />
+    <ClInclude Include="include\win32\openssl\ssl2.h" />
+    <ClInclude Include="include\win32\openssl\ssl23.h" />
+    <ClInclude Include="include\win32\openssl\ssl3.h" />
+    <ClInclude Include="include\win32\openssl\stack.h" />
+    <ClInclude Include="include\win32\openssl\symhacks.h" />
+    <ClInclude Include="include\win32\openssl\tls1.h" />
+    <ClInclude Include="include\win32\openssl\ts.h" />
+    <ClInclude Include="include\win32\openssl\txt_db.h" />
+    <ClInclude Include="include\win32\openssl\ui.h" />
+    <ClInclude Include="include\win32\openssl\ui_compat.h" />
+    <ClInclude Include="include\win32\openssl\whrlpool.h" />
+    <ClInclude Include="include\win32\openssl\x509.h" />
+    <ClInclude Include="include\win32\openssl\x509_vfy.h" />
+    <ClInclude Include="include\win32\openssl\x509v3.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="OpenOpcUaStackV1.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="CMakeLists.txt">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,15 @@
+Determining if the include file pthread.h exists failed with the following output:
+Change Dir: /home/murali/OpenOpcUa_1_0_4_4/OpenOpcUaClientSdk/OpenOpcUaClientLib/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_e4a8b/fast"
+/usr/bin/make -f CMakeFiles/cmTC_e4a8b.dir/build.make CMakeFiles/cmTC_e4a8b.dir/build
+make[1]: Entering directory `/home/murali/OpenOpcUa_1_0_4_4/OpenOpcUaClientSdk/OpenOpcUaClientLib/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_e4a8b.dir/CheckIncludeFile.c.o
+/usr/bin/cc  --sysroot=/home/murali/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/arm-linux-gnueabihf/sysroot/   -mfpu=neon -mfloat-abi=hard -fPIC    -o CMakeFiles/cmTC_e4a8b.dir/CheckIncludeFile.c.o   -c /home/murali/OpenOpcUa_1_0_4_4/OpenOpcUaClientSdk/OpenOpcUaClientLib/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+cc: error: unrecognized command line option ‘-mfpu=neon’
+cc: error: unrecognized command line option ‘-mfloat-abi=hard’
+make[1]: *** [CMakeFiles/cmTC_e4a8b.dir/CheckIncludeFile.c.o] Error 1
+make[1]: Leaving directory `/home/murali/OpenOpcUa_1_0_4_4/OpenOpcUaClientSdk/OpenOpcUaClientLib/CMakeFiles/CMakeTmp'
+make: *** [cmTC_e4a8b/fast] Error 2
+
+

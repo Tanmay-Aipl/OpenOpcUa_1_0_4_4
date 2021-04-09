@@ -1,0 +1,19 @@
+LIBRARY	"XMLSAXParserd"
+EXPORTS
+	xml4CE_SAXParseBegin @2
+	xml4CE_SAXOpenParser @3
+	xml4CE_SAXSetElementHandler @4
+	xml4CE_SAXSetAttlistDeclHandler @5
+	xml4CE_SAXSetCDataSectionHandler @6
+	xml4CE_SAXCreateOutput @7
+	xml4CE_SAXStartElementWrite @8
+	xml4CE_SAXEndElementWrite @9
+	xml4CE_SAXCloseOutput @10
+	xml4CE_SAXStartDoctypeDeclWrite @11
+	xml4CE_SAXEndDoctypeDeclWrite @12
+	xml4CE_SAXOutputFormatSet @13
+	xml4CE_SAXCommentWrite @14
+	xml4CE_SAXSetUserData @15
+	xml4CE_SAXSetCharacterDataHandler @16
+	Xml4CE_SAXCloseParser @17
+	xml4CE_SAXCharacterDataWrite @18

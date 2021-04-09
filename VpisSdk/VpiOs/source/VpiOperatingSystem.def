@@ -1,0 +1,15 @@
+
+; VPIOperatingSystem.def : déclare les paramètres de module pour le VPI
+LIBRARY	"VPIOperatingSystem"
+
+EXPORTS
+
+VpiGlobalStart @2
+VpiColdStart @3
+VpiWarmStart @4
+VpiReadValue @5
+VpiWriteValue @6
+VpiParseAddId @7
+VpiParseRemoveId @8
+VpiSetNotifyCallback @9
+VpiGlobalStop @10

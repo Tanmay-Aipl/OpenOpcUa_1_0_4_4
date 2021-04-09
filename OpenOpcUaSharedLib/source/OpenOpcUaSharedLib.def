@@ -1,0 +1,10 @@
+LIBRARY	"OpenOpcUaSharedLib"
+EXPORTS
+OpcUa_Certificate_LookupLocalhostNames @2
+OpcUa_Certificate_GetDateBound @3
+OpcUa_Certificate_GetInfo @4
+
+OpcUa_CreateApplication_Uri @5
+OpcUa_FreeLibrary @6
+OpcUa_LoadLibrary @7
+OpcUa_LookupDomainName @8
